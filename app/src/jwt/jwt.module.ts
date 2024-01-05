@@ -9,9 +9,9 @@ import { JwtModule } from '@nestjs/jwt';
       useFactory: (config: ConfigService) => {
         return {
           global: true,
-          secret: config.get<string>('JWT_SECRET'),
+          secret: config.get<string>('JWT_SECRET') || 'my-scret-passphrase',
           signOptions: {
-            expiresIn: config.get<string | number>('JWT_EXPIRATION'),
+            expiresIn: config.get<string | number>('JWT_EXPIRATION') || '10m',
           },
         };
       },
