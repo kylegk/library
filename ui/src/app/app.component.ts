@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(private router: Router) {}
 
-  goToLogin() {
+  onLoginButtonClick() {
     this.router.navigate(['/login']);
   }
 
-  goHome() {
+  onHomeButtonClick() {
     this.router.navigate(['/books']);
   }
 }

@@ -13,3 +13,7 @@ mat-card-actions {
     height:auto;
     display:inline-block;
 }
+
+.field-title {
+    font-weight: bold;
+}

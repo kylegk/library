@@ -21,14 +21,18 @@ export class ListBooksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getBooks();
     this.isLoggedIn = this.authService.isLoggedIn();
+    this.getBooks();
   }
 
   getBooks() {
     this.bookService.getAllBooks().subscribe((books) => {
       this.books = books;
     });
+  }
+
+  addBook() {
+    this.router.navigate([`/books/book/add`]);
   }
 
   viewBookDetails(id: string) {

@@ -6,15 +6,17 @@
     <mat-card-content>
         <p>{{book.description}}</p>
         <p>
-            Isbn: {{book.isbn}}
+            <span class="field-title">ISBN:</span> {{book.isbn}}
         </p>
         <p>
-            Publisher: {{book.publisher}}
+            <span class="field-title">Publisher:</span> {{book.publisher}}
         </p>
     </mat-card-content>
-    <mat-card-actions *ngIf="isLoggedIn">
-        <button mat-button mat-button mat-raised-button color="primary" aria-label="Edit">Edit</button>
+    <mat-card-actions>
+        <button mat-button mat-button mat-raised-button color="primary" aria-label="Edit Book" title="Edit Book" (click)="onEditBookClick(book._id)" [disabled]="!isLoggedIn">Edit Book</button>
         <div class="divider"></div>
-        <button mat-button mat-button mat-raised-button color="primary" aria-label="Remove">Remove</button>
+        <button mat-button mat-button mat-raised-button color="primary" aria-label="Remove Book" title="Remove Book" (click)="openRemoveDialogClick(book.title)" [disabled]="!isLoggedIn">Remove Book</button>
+        <div class="divider"></div>
+        <button mat-button mat-button mat-raised-button aria-label="Back to Library" title="Back to Library" (click)="onBackToLibraryClick()">Back to Library</button>
     </mat-card-actions>
 </mat-card>

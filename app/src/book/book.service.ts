@@ -22,12 +22,6 @@ export class BookService {
     const limit = Number(query.limit) || 10;
     const skip = limit * (currentPage - 1);
 
-    /*
-    TODO: Implement DTO that wraps the bookModel with metadata including totalPages and count
-    const count = await this.bookModel.countDocuments({ ...search }).exec();
-    const totalPages = Math.floor((count - 1) / limit) + 1;
-    */
-
     return await this.bookModel
       .find({ ...search })
       .limit(limit)

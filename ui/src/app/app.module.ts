@@ -5,8 +5,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AddBookComponent } from './library/components/book/add-book/add-book.component';
 import { EditBookComponent } from './library/components/book/edit-book/edit-book.component';
-import { RemoveBookComponent } from './library/components/book/remove-book/remove-book.component';
-import { UpdateBookComponent } from './library/components/book/update-book/update-book.component';
 import { ListBooksComponent } from './library/components/book/list-books/list-books.component';
 import { LoginFormComponent } from './login/components/login-form/login-form.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +23,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
+import { AuthInterceptorProvider } from './login/services/auth.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RemoveBookDialogComponent } from './library/components/book/remove-book-dialog/remove-book-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,9 @@ import { MatListModule } from '@angular/material/list';
     BookDetailsComponent,
     AddBookComponent,
     EditBookComponent,
-    RemoveBookComponent,
-    UpdateBookComponent,
     ListBooksComponent,
     LoginFormComponent,
+    RemoveBookDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -56,8 +56,9 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatOptionModule,
     MatListModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

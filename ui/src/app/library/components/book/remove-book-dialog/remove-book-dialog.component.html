@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>Remove {{title}}?</h2>
+<mat-dialog-content>Are you sure you want to remove this book from the library?</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close="confirm" title="Confirm" aria-label="Confirm">Confirm</button>
+    <button mat-button (click)="onCancelClick()" title="Cancel" aria-label="Cancel">Cancel</button>
+</mat-dialog-actions>

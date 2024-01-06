@@ -1,0 +1,19 @@
+.divider{
+    width:1em;
+    height:auto;
+    display:inline-block;
+}
+
+mat-card-header {
+    margin-bottom: 1em;
+}
+
+mat-card {
+    max-width: 800px;
+    min-width: 400px;
+    margin: 2em auto;
+}
+
+mat-form-field {
+    display: block;
+}

@@ -3,48 +3,53 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { Book } from '../interfaces/book';
 
+// TODO: Update inputs to enforce book
+
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  // TODO: Add a book interface
-  baseUrl = 'http://localhost:3000/books';
+  BASE_URL = 'http://localhost:3000/books';
+
   constructor(private http: HttpClient) {}
 
-  // This will return Book[]
   getAllBooks(): Observable<Book[]> {
-    const url = this.baseUrl;
     return this.http
-      .get<Book[]>(url)
+      .get<Book[]>(this.BASE_URL)
       .pipe(catchError(this.handleError<Book[]>('getAllBooks', [])));
   }
 
-  // This will return Book
   getBookDetails(id: string): Observable<Book> {
-    const url = `${this.baseUrl}/book/details/${id}`;
+    const url = `${this.BASE_URL}/book/details/${id}`;
     return this.http
       .get<Book>(url)
       .pipe(catchError(this.handleError<Book>('getBookDetails', undefined)));
   }
 
-  // This will return Book
-  addBook(book: any) {
-    const url = `${this.baseUrl}/book/add/`;
+  addBook(book: Book) {
+    const url = `${this.BASE_URL}/book/add/`;
+    return this.http
+      .post<Book>(url, { ...book })
+      .pipe(catchError(this.handleError<Book>('addBook', undefined)));
   }
 
-  // This will return Book
-  editBook(id: string, book: any) {
-    const url = `${this.baseUrl}/book/update/${id}`;
+  updateBook(id: string, book: Book) {
+    const url = `${this.BASE_URL}/book/update/${id}`;
+    return this.http
+      .put<Book>(url, { ...book })
+      .pipe(catchError(this.handleError<Book>('updateBook', undefined)));
   }
 
-  // This will return null
   removeBook(id: string) {
-    const url = `${this.baseUrl}/book/remove/${id}`;
+    const url = `${this.BASE_URL}/book/remove/${id}`;
+    return this.http
+      .delete<Book>(url)
+      .pipe(catchError(this.handleError<Book>('removeBook', undefined)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      console.error(`${operation} caused the following error: ${error}`);
       return of(result as T);
     };
   }
