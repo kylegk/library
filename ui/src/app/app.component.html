@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span>Library</span>
+  <span class="nav-spacer"></span>
+  <button mat-icon-button class="login-icon" aria-label="Login" (click)="goToLogin()">
+    <mat-icon>login</mat-icon>
+  </button>
+  <button mat-icon-button class="home-icon" aria-label="Home" (click)="goHome()">
+    <mat-icon>book</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

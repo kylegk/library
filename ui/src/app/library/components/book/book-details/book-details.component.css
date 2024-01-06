@@ -1,0 +1,15 @@
+mat-card {
+    max-width: 800px;
+    min-width: 400px;
+    margin: 2em auto;
+}
+
+mat-card-actions {
+    margin-top: 1em;
+}
+
+.divider{
+    width:1em;
+    height:auto;
+    display:inline-block;
+}

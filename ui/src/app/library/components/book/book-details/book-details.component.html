@@ -1,0 +1,20 @@
+<mat-card *ngIf="book">
+    <mat-card-header>
+        <mat-card-title>{{book.title}}</mat-card-title>
+        <mat-card-subtitle>{{book.author}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{book.description}}</p>
+        <p>
+            Isbn: {{book.isbn}}
+        </p>
+        <p>
+            Publisher: {{book.publisher}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions *ngIf="isLoggedIn">
+        <button mat-button mat-button mat-raised-button color="primary" aria-label="Edit">Edit</button>
+        <div class="divider"></div>
+        <button mat-button mat-button mat-raised-button color="primary" aria-label="Remove">Remove</button>
+    </mat-card-actions>
+</mat-card>
