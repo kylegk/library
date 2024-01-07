@@ -23,27 +23,20 @@ For more information about each of these applications, please see their associat
 
 ### Building and Running the Applications
 
-1. Clone this repository to your local machine:
-
-   ```bash
-   git clone https://github.com/bstanley78/angular-nestjs-starter.git
-   cd angular-nestjs-starter
-   ```
-
-2. Install dependencies:
+1. Install dependencies:
 
    ```bash
    cd app && yarn install
    cd ui && yarn install
    ```
 
-3. Build and start the applications using Docker Compose:
+2. Build and start the applications using Docker Compose:
 
    ```bash
    docker-compose up --build
    ```
 
-4. Access the applications:
+3. Access the applications:
    - Frontend: Open http://localhost:4200 in your web browser.
    - Backend: Send requests to http://localhost:3000.
 
