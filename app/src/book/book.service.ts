@@ -22,6 +22,8 @@ export class BookService {
     const limit = Number(query.limit) || 10;
     const skip = limit * (currentPage - 1);
 
+    // TODO: Wrap the model in a response that includes pagination metadata
+
     return await this.bookModel
       .find({ ...search })
       .limit(limit)

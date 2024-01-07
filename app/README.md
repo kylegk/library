@@ -1,73 +1,217 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Nest.js Library Manager API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This API provides basic CRUD operations for a book collection. It is the backend for the Angular web application found in the `/ui` subdirectory in the root of this project.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+The API was created using Nest.js with a MongoDB document data store.
 
-## Description
+## Using the API
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This API uses JSON web tokens for authentication. For roues related to adding, editing, and updating books in the collection, an <code>"authorization": Bearer\<token></code> header must be provided with the request body.
 
-## Installation
+Callers of this API can generate a JWT using the <code>/login</code> route. At this time, a caller can generate a JWT using any combination of **username** and **password**. The routes themselves are protected using the Nest.js Passport feature.
 
-```bash
-$ yarn install
+For those routes that are protected, the authentication guard will check token is included in the header, signed with the correct passphrase, and that the token has not expired.
+
+## Routes
+
+<details>
+<summary>
+<code>GET</code> <code><b>/login</b></code>
+</summary> 
+<br/>
+Generate a JSON web token that will be required for all collection routes, with the exception of <code>/books</code> and <code>/books/book/details/:id</code>. Returns <code>HTTP 201</code> upon success.
+
+##### Request
+
+```
+{
+  "username": "username",
+  "password": "password"
+}
 ```
 
-## Running the app
+##### Response
 
-```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+```
+{
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzIjoxNjI4NDYyMzMwLCJ1c2VyaWQiOjF9.LGte1UTgmzCg8L_FOdDPY7YsSlBeQQs3QyZDe2A7kNY"
+}
 ```
 
-## Test
+</details>
 
-```bash
-# unit tests
-$ yarn run test
+<details>
+<summary>
+<code>POST</code> <code><b>/books/book/add</b></code>
+</summary>
+<br/>
+Add a book to the collection. Returns <code>HTTP 201</code> upon success.
 
-# e2e tests
-$ yarn run test:e2e
+##### Request
 
-# test coverage
-$ yarn run test:cov
+```
+{
+	"isbn": "B0833FBNHV",
+	"title": "The Pragmatic Programmer",
+	"author": "David Thomas",
+	"description": "The Pragmatic Programmer is one of those rare tech audiobooks you’ll listen, re-listen, and listen to again over the years. Whether you’re new to the field or an experienced practitioner, you’ll come away with fresh insights each and every time. ",
+	"publisher": "David Thomas",
+}
 ```
 
-## Support
+##### Response
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```
+{
+	"isbn": "B0833FBNHV",
+	"title": "The Pragmatic Programmer",
+	"author": "David Thomas",
+	"description": "The Pragmatic Programmer is one of those rare tech audiobooks you’ll listen, re-listen, and listen to again over the years. Whether you’re new to the field or an experienced practitioner, you’ll come away with fresh insights each and every time. ",
+	"publisher": "David Thomas",
+	"_id": "6598f2f57732a89e7d248c40",
+	"createdAt": "2024-01-06T06:28:05.106Z",
+	"updatedAt": "2024-01-06T06:28:05.106Z",
+	"__v": 0
+}
+```
 
-## Stay in touch
+</details>
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+<details>
+<summary>
+<code>DELETE</code> <code><b>/books/book/remove/:id</b></code>
+</summary> 
+<br/>
+Remove a book from the collection. Returns <code>HTTP 200</code> upon success.
 
-## License
+##### Request
 
-Nest is [MIT licensed](LICENSE).
+```
+{
+	"isbn": "B0833FBNHV",
+	"title": "The Pragmatic Programmer",
+	"author": "David Thomas",
+	"description": "The Pragmatic Programmer is one of those rare tech audiobooks you’ll listen, re-listen, and listen to again over the years. Whether you’re new to the field or an experienced practitioner, you’ll come away with fresh insights each and every time. ",
+	"publisher": "David Thomas",
+}
+```
+
+##### Response
+
+There is no body in the response. The client must validate HTTP status code to determine success.
+
+</details>
+
+<details>
+<summary>
+<code>PUT</code> <code><b>/books/book/update/:id</b></code> 
+</summary>
+<br/>
+Update a book in the collection. The caller is only required to provide the field and value for which they wish to update; a fully formed book object is not required. Returns <code>HTTP 200</code> upon success.
+
+<br/>
+
+##### Request
+
+```
+{
+	"description": "Updated description",
+}
+```
+
+##### Response
+
+```
+{
+	"isbn": "B0833FBNHV",
+	"title": "The Pragmatic Programmer",
+	"author": "David Thomas",
+	"description": "Updated description",
+	"publisher": "David Thomas",
+	"_id": "6598f2f57732a89e7d248c40",
+	"createdAt": "2024-01-06T06:29:05.106Z",
+	"updatedAt": "2024-01-06T06:29:05.106Z",
+	"__v": 1
+}
+```
+
+</details>
+
+<details>
+<summary>
+<code>GET</code> <code><b>/books/book/details/:id</b></code> 
+</summary>
+<br/>
+
+Get the book object for the <code>id</code> specified. Returns <code>HTTP 200</code> upon succes.
+
+##### Request
+
+Method does not require a request body. Caller only needs to provide a valid <code>id</code> in the path.
+
+##### Response
+
+```
+{
+	"isbn": "B0833FBNHV",
+	"title": "The Pragmatic Programmer",
+	"author": "David Thomas",
+	"description": "Updated description",
+	"publisher": "David Thomas",
+	"_id": "6598f2f57732a89e7d248c40",
+	"createdAt": "2024-01-06T06:28:05.106Z",
+	"updatedAt": "2024-01-06T06:28:05.106Z",
+	"__v": 0
+}
+```
+
+</details>
+
+<details>
+<summary>
+<code>GET</code> <code><b>/books</b></code> 
+</summary>
+<br/>
+
+Get an array of book objects. Returns <code>HTTP 200</code> upon succes.
+
+##### Request
+
+This method does not require a request body. The method does however, have a notion of search as well as very limited pagination controls.
+<br/><br/>
+The caller can search the collection by providing a key/value pair for each of the fields they wish to search on/for. For example, if a caller wanted to limit results to only those books whose title include the word `book`, the caller would simply need to append `title=book` to the query string.
+<br/><br/>
+The pagination features for this API are incomplete. A caller can limit the maximum number of results returned from this method by including `limit=n` in the query string, where `n` is an integer value (**NOTE:** The default limit is `10`).
+<br/><br/>
+If the total number of results of the query exceed the limit, the caller can provide a `page` value to get a subset of results limited by the value of `limit`. For example, if the collection had twenty books, and the caller did not provide a limit, the caller would receive the first ten results. If the caller wanted to retrieve results eleven through twenty, the caller would need to append `page=2` to the query string.
+
+##### Response
+
+```
+[
+  {
+    "_id": '6598f2f57732a89e7d248c40',
+    "isbn": '978-1680507221',
+    "title": 'Book One',
+    "author": 'Author One',
+    "description": 'Description One',
+    "publisher": 'Publisher One',
+    "createdAt": '2024-01-06T06:28:05.106Z',
+    "updatedAt": '2024-01-06T06:28:05.106Z',
+    "__v": 0,
+  },
+  {
+    "_id": '6599a1277732a89e7d248ca4',
+    "isbn": '123-4567890',
+    "title": 'Book Two',
+    "author": 'Author Two',
+    "description": 'Description Two',
+    "publisher": 'Publisher Two',
+    "createdAt": '2024-01-06T18:51:19.674Z',
+    "updatedAt": '2024-01-06T18:51:19.674Z',
+    "__v": 0,
+  },
+];
+```
+
+</details>
