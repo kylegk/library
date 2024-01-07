@@ -8,7 +8,7 @@ mat-card-actions {
     margin-top: 1em;
 }
 
-.divider{
+.button-divider{
     width:1em;
     height:auto;
     display:inline-block;

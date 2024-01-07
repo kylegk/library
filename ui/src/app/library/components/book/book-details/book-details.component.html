@@ -14,9 +14,9 @@
     </mat-card-content>
     <mat-card-actions>
         <button mat-button mat-button mat-raised-button color="primary" aria-label="Edit Book" title="Edit Book" (click)="onEditBookClick(book._id)" [disabled]="!isLoggedIn">Edit Book</button>
-        <div class="divider"></div>
+        <div class="button-divider"></div>
         <button mat-button mat-button mat-raised-button color="primary" aria-label="Remove Book" title="Remove Book" (click)="openRemoveDialogClick(book.title)" [disabled]="!isLoggedIn">Remove Book</button>
-        <div class="divider"></div>
+        <div class="button-divider"></div>
         <button mat-button mat-button mat-raised-button aria-label="Back to Library" title="Back to Library" (click)="onBackToLibraryClick()">Back to Library</button>
     </mat-card-actions>
 </mat-card>
