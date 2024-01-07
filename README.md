@@ -4,7 +4,7 @@ This project contains a small application with limited functionality for managin
 
 It provides a simple CRUD API created with Nest.js, and an Angular frontend allowing users to add, edit, and retrieve books.
 
-The basic structure of this application originates from Brian Stanley's [Angular-NestJS Starter Template](https://github.com/bstanley78/angular-nestjs-starter).
+The basic structure of this application originates from the [Angular-NestJS Starter Template](https://github.com/bstanley78/angular-nestjs-starter) project.
 
 ## Project Structure
 
