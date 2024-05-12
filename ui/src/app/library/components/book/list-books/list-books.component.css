@@ -11,3 +11,11 @@ mat-card-actions {
 .book-item {
     margin-right: 1em;
 }
+
+.custom-icon-size {
+    font-size: 20px;
+    height: 20px;
+    margin-bottom: -4px;
+    font-weight: 600;
+    color: black;
+}

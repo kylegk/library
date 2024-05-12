@@ -229,3 +229,13 @@ As this pagination implementation is incomplete, the body of the response does n
 ```
 
 </details>
+
+## Tests
+
+### Unit Tests
+
+To run the unit tests for validating JWT authorization and collection endpoints run the following command:
+
+```bash
+yarn run test
+```

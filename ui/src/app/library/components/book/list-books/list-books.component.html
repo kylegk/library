@@ -1,11 +1,12 @@
 <mat-card>
 
     <mat-card-header>
-        <mat-card-title>Book Collection</mat-card-title>
+        <mat-card-title>Book Collection Manager</mat-card-title>
         <mat-card-subtitle>
-            Below is a list of books in the library. Click on a book to view details about the book.
-            <br/>
-            If you are logged in, you can add books to the library.
+            Welcome to your personal book collection manager. This tool allows you to add, edit, view details about, and remove books from your library.
+            <p *ngIf="!isLoggedIn">
+                You will need to log in to the applicaton to add or remove books. Please click the <mat-icon class="custom-icon-size">login</mat-icon> icon in the upper right to get started.
+            </p>
         </mat-card-subtitle>        
     </mat-card-header>
 
@@ -21,7 +22,7 @@
     </mat-card-content>
 
     <mat-card-content *ngIf="!books.length">
-        <h4>There are currently no books in the library.</h4>
+        <h4>There are currently no books in the library. <ng-container *ngIf="!isLoggedIn">Please log in to add a book.</ng-container></h4>
     </mat-card-content>
 
     <mat-card-actions>
