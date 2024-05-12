@@ -8,11 +8,19 @@ mat-card-actions {
     margin-left: 1em;
 }
 
+.book-library-icon {
+    margin-bottom: -6px;
+}
+
 .book-item {
     margin-right: 1em;
 }
 
-.custom-icon-size {
+.book-item-icon {
+    margin-bottom: -6px;
+}
+
+.login-icon {
     font-size: 20px;
     height: 20px;
     margin-bottom: -4px;

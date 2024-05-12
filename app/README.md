@@ -239,3 +239,7 @@ To run the unit tests for validating JWT authorization and collection endpoints 
 ```bash
 yarn run test
 ```
+
+## TODO
+
+This API is not considered feature complete. The API is missing some critical functionality such as pagination, and the ability to refresh the authorization token.

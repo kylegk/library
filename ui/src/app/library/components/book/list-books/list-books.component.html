@@ -1,11 +1,13 @@
 <mat-card>
 
     <mat-card-header>
-        <mat-card-title>Book Collection Manager</mat-card-title>
+        <mat-card-title>
+            <mat-icon class="book-library-icon">library_books</mat-icon> Book Collection Manager
+        </mat-card-title>
         <mat-card-subtitle>
             Welcome to your personal book collection manager. This tool allows you to add, edit, view details about, and remove books from your library.
             <p *ngIf="!isLoggedIn">
-                You will need to log in to the applicaton to add or remove books. Please click the <mat-icon class="custom-icon-size">login</mat-icon> icon in the upper right to get started.
+                You will need to log in to the applicaton to add or remove books. Please click the <mat-icon class="login-icon">login</mat-icon> icon in the upper right to get started.
             </p>
         </mat-card-subtitle>        
     </mat-card-header>
@@ -14,7 +16,9 @@
         <mat-action-list *ngFor="let book of books">   
             <mat-list-item>
                 <button mat-list-item (click)="viewBookDetails(book._id)" aria-label="{{book.title}}" title="{{book.title}}">
-                    <span class="book-item"><mat-icon>menu_book</mat-icon></span>
+                    <span class="book-item">
+                        <mat-icon class="book-item-icon">menu_book</mat-icon>
+                    </span>
                     <span>{{book.title}}</span>
                 </button>
             </mat-list-item>

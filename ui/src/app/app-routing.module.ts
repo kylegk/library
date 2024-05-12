@@ -23,7 +23,6 @@ const routes: Routes = [
   {
     path: 'books/book/details/:id',
     component: BookDetailsComponent,
-    canActivate: [authGuard],
   },
   { path: '**', component: ListBooksComponent },
 ];
